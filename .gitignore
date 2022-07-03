@@ -1,0 +1,12 @@
+.vscode/
+*/.vscode/
+
+*.o
+*.obj
+*.bak
+*.bin
+
+*/*.o
+*/*.obj
+*/*.bak
+*/*.bin
