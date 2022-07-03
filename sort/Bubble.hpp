@@ -1,11 +1,10 @@
-#ifndef __BUBBLE_H__
-#define __BUBBLE_H__
+#ifndef __BUBBLE_HPP__
+#define __BUBBLE_HPP__
 
 #include <string>
 #include <vector>
 
-#include "ISort.hpp"
-#include "util.hpp"
+#include "sort.hpp"
 
 namespace alg {
 namespace sort {
@@ -46,4 +45,4 @@ public:
 }   // namespace sort
 }   // namespace alg
 
-#endif // __BUBBLE_H__
+#endif // __BUBBLE_HPP__

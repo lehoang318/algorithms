@@ -1,11 +1,10 @@
-#ifndef __INSERTION_H__
-#define __INSERTION_H__
+#ifndef __INSERTION_HPP__
+#define __INSERTION_HPP__
 
 #include <string>
 #include <vector>
 
-#include "ISort.hpp"
-#include "util.hpp"
+#include "sort.hpp"
 
 namespace alg {
 namespace sort {
@@ -47,4 +46,4 @@ public:
 }   // namespace sort
 }   // namespace alg
 
-#endif // __INSERTION_H__
+#endif // __INSERTION_HPP__

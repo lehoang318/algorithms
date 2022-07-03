@@ -1,11 +1,10 @@
-#ifndef __SELECTION_H__
-#define __SELECTION_H__
+#ifndef __SELECTION_HPP__
+#define __SELECTION_HPP__
 
 #include <string>
 #include <vector>
 
-#include "ISort.hpp"
-#include "util.hpp"
+#include "sort.hpp"
 
 namespace alg {
 namespace sort {
@@ -51,4 +50,4 @@ public:
 }   // namespace sort
 }   // namespace alg
 
-#endif // __SELECTION_H__
+#endif // __SELECTION_HPP__

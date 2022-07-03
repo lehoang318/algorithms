@@ -1,11 +1,13 @@
-#ifndef __UTIL_H__
-#define __UTIL_H__
+#ifndef __MISC_HPP__
+#define __MISC_HPP__
 
 #include <cstdlib>
 #include <cstdio>
 
 #include <string>
 #include <vector>
+
+namespace util {
 
 #if defined(DEBUG_MODE)
 #define LOG(msg)    printf("[%d.%s] %s\n", __LINE__, __func__, msg)
@@ -53,4 +55,6 @@ inline std::string arr2str(std::vector<int> &&buffer) {
     return ret + "]";
 }
 
-#endif // __UTIL_H__
+}   // namespace util
+
+#endif // __MISC_HPP__

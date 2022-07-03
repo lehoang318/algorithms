@@ -1,12 +1,11 @@
-#ifndef __ISORT_H__
-#define __ISORT_H__
+#ifndef __SORT_HPP__
+#define __SORT_HPP__
 
 #include <string>
 #include <vector>
 
-#include "util.hpp"
-
 namespace alg {
+namespace sort{
 
 class ISort {
 public:
@@ -17,12 +16,14 @@ public:
         return "alg.ISort";
     }
 
-    void rnr(void) {
-        LOG(("[" + getIdentifier() + "] Summary:").c_str());
-        LOG(("* Comparison: " + std::to_string(mCmpCount)).c_str());
-        LOG(("* Swap      : " + std::to_string(mSwapCount)).c_str());
+    std::string rnr(void) {
+        std::string report = "[" + getIdentifier() + "] Summary:\n";
+        report += "* Comparison: " + std::to_string(mCmpCount) + "\n";
+        report += "* Swap      : " + std::to_string(mSwapCount) + "\n";
 
         reset();
+
+        return report;
     }
 
     void reset(void) {
@@ -54,6 +55,7 @@ protected:
     int mSwapCount;
 };  // class ISort
 
+}   // namespace sort
 }   // namespace alg
 
-#endif // __ISORT_H__
+#endif // __SORT_HPP__

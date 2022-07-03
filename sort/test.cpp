@@ -6,7 +6,9 @@
 #include "Bubble.hpp"
 #include "Insertion.hpp"
 #include "Selection.hpp"
-#include "util.hpp"
+
+#include "util/misc.hpp"
+#include "util/profiling.hpp"
 
 #define NO_OF_TESTS     3
 #define NO_OF_ELEMENTS  5
@@ -36,11 +38,13 @@ static inline void display_usage(char * exec_name) {
 
 int main(int argc, char ** argv) {
     srand(time(NULL));
+    util::Profiler profiler;
+    const int timer_id = 0;
 
     std::vector<int> test_data;
     std::vector<int> sorted_data;
 
-    std::unique_ptr<alg::ISort> pSortEngine;
+    std::unique_ptr<alg::sort::ISort> pSortEngine;
 
     if (1 < argc) {
         switch (std::stoi(argv[1])) {
@@ -64,19 +68,21 @@ int main(int argc, char ** argv) {
     }
 
     for (auto i = 0; i < NO_OF_TESTS; i++) {
-        test_data = rng(NO_OF_ELEMENTS, 0, 255);
-        LOG(("Original: " + arr2str(test_data)).c_str());
+        test_data = util::rng(NO_OF_ELEMENTS, 0, 255);
+        LOG(("Original: " + util::arr2str(test_data)).c_str());
 
-        // sorted_data.clear();
+        profiler.start(timer_id);
         sorted_data = pSortEngine->Proceed(test_data);
-        LOG(("-> Ascending: " + arr2str(sorted_data)).c_str());
-        pSortEngine->rnr();
+        LOG(("-> Ascending: " + util::arr2str(sorted_data)).c_str());
+        LOG(pSortEngine->rnr().c_str());
+        LOG(("-> Duration: " + std::to_string(profiler.stop(timer_id, util::TIME_UNIT_MICROSECOND)) + " (us)").c_str());
         NEWLINE();
 
-        // sorted_data.clear();
+
         sorted_data = pSortEngine->Proceed(test_data, false);
-        LOG(("-> Descending: " + arr2str(sorted_data)).c_str());
-        pSortEngine->rnr();
+        LOG(("-> Descending: " + util::arr2str(sorted_data)).c_str());
+        LOG(pSortEngine->rnr().c_str());
+        LOG(("-> Duration: " + std::to_string(profiler.stop(timer_id, util::TIME_UNIT_MICROSECOND)) + " (us)").c_str());
         NEWLINE();
     }
 
