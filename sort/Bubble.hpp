@@ -12,18 +12,17 @@ namespace sort {
 class Bubble : public ISort {
 public:
     Bubble(void) {}
-    std::vector<int> Proceed(const std::vector<int> &data, bool ascending = true) override {
-        std::vector<int> sorted(data);
+    void Proceed(std::vector<int> &data, bool ascending = true) override {
         bool swap_flag = false;
 
-        for (auto i = 0; i < sorted.size(); i++) {
-            for (auto j = 0; j < sorted.size() - i - 1; j++) {
+        for (size_t i = 0; i < data.size(); i++) {
+            for (size_t j = 0; j < data.size() - i - 1; j++) {
                 bool to_swap =
-                    (ascending && (0 < _compare(sorted[j], sorted[j + 1]))) ||
-                    ((!ascending) && (0 > _compare(sorted[j], sorted[j + 1])));
+                    (ascending && (0 < _compare(data[j], data[j + 1]))) ||
+                    ((!ascending) && (0 > _compare(data[j], data[j + 1])));
 
                 if (to_swap) {
-                    _swap(sorted, j, j + 1);
+                    _swap(data, j, j + 1);
                     swap_flag = true;
                 }
             }
@@ -32,8 +31,6 @@ public:
                 break;
             }
         }
-
-        return sorted;
     }
 
     std::string getIdentifier(void) override {

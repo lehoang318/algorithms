@@ -10,10 +10,11 @@ namespace sort{
 class ISort {
 public:
     ISort(void) : mCmpCount(0), mSwapCount(0) {}
+    virtual ~ISort(void) {}
 
-    virtual std::vector<int> Proceed(const std::vector<int> &data, bool ascending = true) = 0;
+    virtual void Proceed(std::vector<int> &data, bool ascending = true) = 0;
     virtual std::string getIdentifier(void) {
-        return "alg.ISort";
+        return "alg.sort.ISort";
     }
 
     std::string rnr(void) {

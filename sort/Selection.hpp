@@ -12,20 +12,17 @@ namespace sort {
 class Selection : public ISort {
 public:
     Selection(void) {}
-    std::vector<int> Proceed(const std::vector<int> &data, bool ascending = true) override {
-        std::vector<int> sorted(data);
-
+    void Proceed(std::vector<int> &data, bool ascending = true) override {
         size_t j, k;
-        int tmp;
 
-        for (size_t i = 0; i < (sorted.size() - 1); i++) {
+        for (size_t i = 0; i < (data.size() - 1); i++) {
             j = i + 1;
             k = i;
 
-            while (sorted.size() > j) {
+            while (data.size() > j) {
                 if (
-                    (ascending && (0 < _compare(sorted[k], sorted[j]))) ||
-                    ((!ascending) && (0 > _compare(sorted[k], sorted[j])))
+                    (ascending && (0 < _compare(data[k], data[j]))) ||
+                    ((!ascending) && (0 > _compare(data[k], data[j])))
                 ) {
                     k = j;
                 }
@@ -34,11 +31,9 @@ public:
             }
 
             if (i != k) {
-                _swap(sorted, i, k);
+                _swap(data, i, k);
             }
         }
-
-        return sorted;
     }
 
     std::string getIdentifier(void) override {

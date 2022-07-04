@@ -1,6 +1,6 @@
 #ifndef __INSERTION_HPP__
 #define __INSERTION_HPP__
-
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -12,29 +12,30 @@ namespace sort {
 class Insertion : public ISort {
 public:
     Insertion(void) {}
-    std::vector<int> Proceed(const std::vector<int> &data, bool ascending = true) override {
-        std::vector<int> sorted(data);
+    void Proceed(std::vector<int> &data, bool ascending = true) override {
+        size_t j;
+        bool toSwap;
+        int val;
 
-        for (auto i = 1; i < sorted.size(); i++) {
-            int val = sorted[i];
+        for (size_t i = 1; i < data.size(); i++) {
+            val = data[i];
 
-            int j = i - 1;
+            for (j = i; j > 0; j--) {
+                if (ascending) {
+                    toSwap = (0 < _compare(data[j - 1], val));
+                } else {
+                    toSwap = (0 > _compare(data[j - 1], val));
+                }
 
-            while (
-                (0 <= j) &&
-                (
-                    (ascending && (0 < _compare(sorted[j], val))) ||
-                    ((!ascending) && (0 > _compare(sorted[j], val)))
-                )
-            ) {
-                sorted[j + 1] = sorted[j];
-                j--;
+                if (toSwap) {
+                    data[j] = data[j - 1];
+                } else {
+                    break;
+                }
             }
 
-            sorted[j + 1] = val;
+            data[j] = val;
         }
-
-        return sorted;
     }
 
     std::string getIdentifier(void) override {

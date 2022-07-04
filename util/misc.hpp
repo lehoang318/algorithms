@@ -27,7 +27,7 @@ inline std::vector<int> rng(int size, int min=0, int max=RAND_MAX) {
     return buffer;
 }
 
-inline std::string arr2str(std::vector<int> &buffer) {
+inline std::string arr2str(const std::vector<int> &buffer) {
     std::string ret("[");
 
     for(auto val : buffer) {
@@ -41,7 +41,7 @@ inline std::string arr2str(std::vector<int> &buffer) {
     return ret + "]";
 }
 
-inline std::string arr2str(std::vector<int> &&buffer) {
+inline std::string arr2str(const std::vector<int> &&buffer) {
     std::string ret("[");
 
     for(auto val : buffer) {
