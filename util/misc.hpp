@@ -17,7 +17,7 @@ namespace util {
 
 #define NEWLINE()   printf("\n")
 
-inline std::vector<int> rng(int size, int min=0, int max=RAND_MAX) {
+inline std::vector<int> rng_integers(int size, int min=0, int max=RAND_MAX) {
     std::vector<int> buffer;
 
     for (auto i = 0; i < size; i++) {
@@ -25,6 +25,10 @@ inline std::vector<int> rng(int size, int min=0, int max=RAND_MAX) {
     }
 
     return buffer;
+}
+
+inline int rng_integer(int min=-(RAND_MAX - 1), int max=RAND_MAX) {
+    return ((rand() % (max - min)) + min);
 }
 
 inline std::string arr2str(const std::vector<int> &buffer) {
