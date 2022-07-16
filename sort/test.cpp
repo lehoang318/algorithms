@@ -5,18 +5,22 @@
 
 #include "Bubble.hpp"
 #include "Insertion.hpp"
+#include "RMerge.hpp"
 #include "Selection.hpp"
 #include "Quick.hpp"
 
 #include "util/misc.hpp"
 #include "util/profiling.hpp"
 
-#define NO_OF_TESTS     3
-#define NO_OF_ELEMENTS  10
+#define NO_OF_TESTS         3
+#define NO_OF_ELEMENTS      10
+#define MIN_ELEMENT_VALUE   0
+#define MAX_ELEMENT_VALUE   255
 
 typedef enum {
     SORT_BUBBLE = 0,
     SORT_INSERTION,
+    SORT_RMERGE,
     SORT_SELECTION,
     SORT_QUICK
 } SortEngineIdType;
@@ -24,6 +28,7 @@ typedef enum {
 std::map<SortEngineIdType, std::string> SortEngineMap = {
     {SORT_BUBBLE, "Bubble"},
     {SORT_INSERTION, "Insertion"},
+    {SORT_RMERGE, "Recursive Merge"},
     {SORT_SELECTION, "Selection"},
     {SORT_QUICK, "Quick"}
 };
@@ -61,6 +66,10 @@ int main(int argc, char ** argv) {
                 pSortEngine.reset(new alg::sort::Insertion());
                 break;
 
+            case SORT_RMERGE:
+                pSortEngine.reset(new alg::sort::RMerge());
+                break;
+
             case SORT_SELECTION:
                 pSortEngine.reset(new alg::sort::Selection());
                 break;
@@ -78,7 +87,7 @@ int main(int argc, char ** argv) {
     }
 
     for (auto i = 0; i < NO_OF_TESTS; i++) {
-        test_data = util::rng(NO_OF_ELEMENTS, 0, 255);
+        test_data = util::rng_integers(NO_OF_ELEMENTS, MIN_ELEMENT_VALUE, MAX_ELEMENT_VALUE);
         msg = std::to_string(i) + ". Original: " + util::arr2str(test_data);
         LOG(msg.c_str());
 
